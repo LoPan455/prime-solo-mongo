@@ -1,0 +1,109 @@
+// Insert at least 3 documents that represent an order. IMPORTANT: See section below for fields.
+
+orders.insert({
+    orderDate: "2016-02-01",
+    orderTotal: 34.99,
+    lineItems: [
+{
+    unitPrice: 4.99,
+    quantity: 4,
+    productName: "gadgets"
+},
+{
+    unitPrice: 5.99,
+    quantity: 5,
+    productName: "doodads"
+},
+{
+    unitPrice: 6.99,
+    quantity: 7,
+    productName: "widgets"
+}]})
+
+
+
+
+
+orders.insert({
+    orderDate: "2012-03-27",
+    orderTotal: 276.99,
+    lineItems: [
+{
+    unitPrice: 8.99,
+    quantity: 7,
+    productName: "gadgets"
+},
+{
+    unitPrice: 13.99,
+    quantity: 15,
+    productName: "doodads"
+},
+{
+    unitPrice: 27.99,
+    quantity: 27,
+    productName: "widgets"
+}]})
+
+orders.insert({
+    orderDate: "2017-02-28",
+    orderTotal: 1276.99,
+    lineItems: [
+{
+    unitPrice: 88.99,
+    quantity: 147,
+    productName: "puppy"
+},
+{
+    unitPrice: 53.99,
+    quantity: 15,
+    productName: "kitten"
+},
+{
+    unitPrice: 179.99,
+    quantity: 2,
+    productName: "goldfish"
+}]})
+
+
+
+// Find a single order document, any order document.
+
+db.getCollection('orders').find({orderDate: "2016-02-01"})
+
+
+//Find all orders and make them look pretty.
+
+orders.find({}).pretty()
+
+
+//Find all orders with an orderDate that is prior to 1/1/2016.
+
+ orders.find( {orderDate: {$lt: "2016-01-01"} } )
+
+
+// Find all orders with an orderDate that is after 1/1/2016.
+
+orders.find( {orderDate: {$gt: "2016-01-01"} } )
+
+// Find orders with lineItems that have a quantity that is less than 50, but greater than 5. HINT: Look at $and and dot notation.
+
+orders.find ({
+               $and: [
+                        {'lineItems.quantity': {$lt:50}}
+                    ]
+            });
+
+// Update one of your line items to 42.99. HINT: Look at dot notation
+//Remove one of your orders.
+
+
+//order fields
+// orderDate -- see https://docs.mongodb.org/manual/reference/method/Date/
+// orderTotal
+// lineItems -- an array of line item objects with fields
+// unitPrice
+// quantity
+// productName
+
+
+    
